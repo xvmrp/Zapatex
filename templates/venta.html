@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Zapatex - Venta</title>
+  <script src="/static/js/script.js" defer></script>
+</head>
+<body>
+  <h1>Venta</h1>
+
+  <div id="sucursales">
+    {% for nombre, datos in sucursales.items() %}
+      <div>{{ nombre }} - Cant: {{ datos.cantidad }} | Precio: {{ datos.precio }}</div>
+    {% endfor %}
+    <hr>
+    Casa Matriz - Cant: {{ casa_matriz.cantidad }} | Precio: {{ casa_matriz.precio }}
+  </div>
+
+  <select id="selectSucursal">
+    {% for nombre in sucursales.keys() %}
+      <option value="{{ nombre }}">{{ nombre }}</option>
+    {% endfor %}
+  </select>
+
+  <input type="number" id="cantidad" placeholder="Cantidad">
+  <button onclick="calcular()">Calcular</button>
+
+  <div id="resultados"></div>
+  <button onclick="realizarVenta()">Venta</button>
+</body>
+</html>
