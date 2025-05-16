@@ -4,28 +4,53 @@
   <meta charset="UTF-8">
   <title>Zapatex - Venta</title>
   <script src="/static/js/script.js" defer></script>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <h1>Venta</h1>
+<body class="bg-black text-yellow-400 font-sans min-h-screen flex flex-col items-center justify-start py-10">
 
-  <div id="sucursales">
-    {% for nombre, datos in sucursales.items() %}
-      <div>{{ nombre }} - Cant: {{ datos.cantidad }} | Precio: {{ datos.precio }}</div>
-    {% endfor %}
-    <hr>
-    Casa Matriz - Cant: {{ casa_matriz.cantidad }} | Precio: {{ casa_matriz.precio }}
+  <h1 class="text-4xl font-bold mb-8 border-b-2 border-yellow-400 pb-2">Zapatex - Venta</h1>
+
+  <div class="bg-gray-900 p-6 rounded-xl shadow-md w-full max-w-xl mb-6">
+    <h2 class="text-2xl font-semibold mb-4">Sucursales</h2>
+    <ul class="space-y-2">
+      {% for nombre, datos in sucursales.items() %}
+        <li class="flex justify-between border-b border-yellow-700 pb-1">
+          <span>{{ nombre }}</span>
+          <span>Cant: {{ datos.cantidad }} | ${{ datos.precio }}</span>
+        </li>
+      {% endfor %}
+    </ul>
+    <div class="mt-4 pt-4 border-t border-yellow-600">
+      <strong>Casa Matriz</strong> - Cant: {{ casa_matriz.cantidad }} | ${{ casa_matriz.precio }}
+    </div>
   </div>
 
-  <select id="selectSucursal">
-    {% for nombre in sucursales.keys() %}
-      <option value="{{ nombre }}">{{ nombre }}</option>
-    {% endfor %}
-  </select>
+  <div class="bg-gray-900 p-6 rounded-xl shadow-md w-full max-w-xl space-y-4">
+    <div>
+      <label for="selectSucursal" class="block mb-1">Sucursal:</label>
+      <select id="selectSucursal" class="w-full p-2 rounded bg-black border border-yellow-400 text-yellow-400">
+        {% for nombre in sucursales.keys() %}
+          <option value="{{ nombre }}">{{ nombre }}</option>
+        {% endfor %}
+      </select>
+    </div>
 
-  <input type="number" id="cantidad" placeholder="Cantidad">
-  <button onclick="calcular()">Calcular</button>
+    <div>
+      <label for="cantidad" class="block mb-1">Cantidad:</label>
+      <input type="number" id="cantidad" placeholder="Ej: 5" class="w-full p-2 rounded bg-black border border-yellow-400 text-yellow-400 placeholder-yellow-600">
+    </div>
 
-  <div id="resultados"></div>
-  <button onclick="realizarVenta()">Venta</button>
+    <div class="flex gap-4">
+      <button onclick="calcular()" class="flex-1 bg-yellow-400 text-black font-bold py-2 px-4 rounded hover:bg-yellow-300 transition">
+        Calcular
+      </button>
+      <button onclick="realizarVenta()" class="flex-1 bg-yellow-600 text-black font-bold py-2 px-4 rounded hover:bg-yellow-500 transition">
+        Venta
+      </button>
+    </div>
+
+    <div id="resultados" class="mt-4 text-sm text-yellow-300"></div>
+  </div>
+
 </body>
 </html>
