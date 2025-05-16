@@ -40,16 +40,20 @@
       <input type="number" id="cantidad" placeholder="Ej: 5" class="w-full p-2 rounded bg-black border border-yellow-400 text-yellow-400 placeholder-yellow-600">
     </div>
 
-    <div class="flex gap-4">
+    <div class="flex flex-col gap-4 sm:flex-row">
       <button onclick="calcular()" class="flex-1 bg-yellow-400 text-black font-bold py-2 px-4 rounded hover:bg-yellow-300 transition">
         Calcular
       </button>
       <button onclick="realizarVenta()" class="flex-1 bg-yellow-600 text-black font-bold py-2 px-4 rounded hover:bg-yellow-500 transition">
         Venta
       </button>
+      <button id="btnPagar" class="flex-1 bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-400 transition disabled:opacity-50" disabled>
+        Pagar con Webpay
+      </button>
     </div>
 
     <div id="resultados" class="mt-4 text-sm text-yellow-300"></div>
+    <div id="estadoPago" class="mt-2 text-sm text-green-400 hidden">Redirigiendo a Webpay...</div>
   </div>
 
 </body>
